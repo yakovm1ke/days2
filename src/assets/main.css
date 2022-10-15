@@ -1,0 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Lacquer&display=swap');
+/* Need to remove default browser styles */
+@import url('normalize.css');
+
+:root {
+  /* variables */
+  --d2-yellow: #FED766;
+  --d2-blue: #3F84E5;
+  --d2-black: #06070E;
+
+  color: var(--d2-black);
+  font-family: 'Lacquer', cursive;
+}
