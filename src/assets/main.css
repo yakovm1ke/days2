@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Lacquer&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;700&display=swap');
 /* Need to remove default browser styles */
 @import url('normalize.css');
 
@@ -6,8 +6,18 @@
   /* variables */
   --d2-yellow: #FED766;
   --d2-blue: #3F84E5;
+  --d2-neutral: #a2aab1;
+  --d2-white: #EDF5FC;
   --d2-black: #06070E;
+  --d2-green: #2CDA9D;
+  --d2-red: #F05D5E;
+  --size-extra-small: 8px;
+  --size-small: 12px;
+  --size-regular: 16px;
+  --size-large: 24px;
 
+  background: var(--d2-white);
   color: var(--d2-black);
-  font-family: 'Lacquer', cursive;
+  font-family: 'Rubik', sans-serif;
+  letter-spacing: -0.04em;
 }
