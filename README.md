@@ -1,6 +1,6 @@
 # days2
 
-Simple counter of days after and days from date. Project was written with Vue 3 and Vite.
+Simple counter of days before/after date. Project was written with Vue 3 and Vite.
 
 ## Project Setup
 
