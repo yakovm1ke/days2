@@ -17,8 +17,6 @@
 </template>
 
 <script lang='ts' setup>
-import {defineProps, defineEmits } from 'vue'
-
 const emits = defineEmits(['handleInput'])
 const props = defineProps({
 	label: {
