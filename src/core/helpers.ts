@@ -69,6 +69,31 @@ export const addMonth = (date: Date, value: number) => {
 	return new Date(year, month + value, monthDay)
 }
 
+/**
+ * Вычисляет разницу между датами в годах
+ */
+export const getDifferenceInYears = (leftDate: Date, rightDate: Date): number => {
+	const leftDateYear = leftDate.getFullYear()
+	const rightDateYear = rightDate.getFullYear()
+
+	return rightDateYear - leftDateYear
+}
+
+/**
+ * Вычисляет разницу между датами в месяцах
+ */
+export const getDifferenceInMonths = (leftDate: Date, rightDate: Date): number => {
+	const leftDateMonth = leftDate.getMonth()
+	const rightDateMonth = rightDate.getMonth()
+
+	const differenceInYears = getDifferenceInYears(leftDate, rightDate)
+
+	if (!differenceInYears) {
+		return rightDateMonth - leftDateMonth
+	}
+	return (rightDateMonth - leftDateMonth) + differenceInYears * 12
+}
+
 export const addZero = (value: number): string => {
 	if (isNaN(value)) return ''
 	if (value < 10) return `0${value}`

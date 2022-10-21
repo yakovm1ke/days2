@@ -74,7 +74,7 @@
 <script lang='ts' setup>
 import { computed, ref, type Ref } from 'vue'
 import { monthsMap } from '@/core/consts'
-import { getDaysInMonth, getMonthStartDay, isSameDay, isSameMonth, isWeekend, getDateParams, addMonth, addZero } from '@/core/helpers'
+import { getDaysInMonth, getMonthStartDay, isSameDay, isSameMonth, isWeekend, getDateParams, addMonth, addZero, getDifferenceInMonths } from '@/core/helpers'
 
 function getDisplayDate(week: number, day: number) {
 	// NOTE: day + 1 для смещения первого дня с ВС на ПН
@@ -99,7 +99,7 @@ function changeMonth(value: number) {
 }
 function handleSelect(date: Date) {
 	if (!isSameMonth(date, displayedDate.value)) {
-		changeMonth(date.getMonth() - displayedDate.value.getMonth())
+		changeMonth(getDifferenceInMonths(displayedDate.value, date))
 	}
 	selectedDate.value = date
 }
