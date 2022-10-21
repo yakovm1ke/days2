@@ -1,5 +1,5 @@
 <template>
-  <div v-if="days !== null">
+  <div>
     {{ content }}
   </div>
 </template>

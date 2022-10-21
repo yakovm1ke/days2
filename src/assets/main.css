@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;700&display=swap');
 /* Need to remove default browser styles */
 @import url('normalize.css');
+@import url('reset.css');
 
 :root {
   /* variables */
