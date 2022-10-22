@@ -73,9 +73,9 @@
 
 <script lang='ts' setup>
 import { computed, ref, type Ref } from 'vue'
-import { monthsNamesMap } from '@/core/consts'
-import { getDaysInMonth, getMonthStartDay, getDateParams, addZero } from '@/core/helpers'
-import { isSameDay, isSameMonth, isWeekend, addMonths, differenceInMonths } from 'date-fns'
+import { DATE_FORMAT, monthsNamesMap } from '@/core/consts'
+import { getDaysInMonth, getMonthStartDay, getDateParams } from '@/core/helpers'
+import { isSameDay, isSameMonth, isWeekend, addMonths, format } from 'date-fns'
 
 function getDisplayDate(week: number, day: number) {
 	// NOTE: day + 1 для смещения первого дня с ВС на ПН
@@ -88,6 +88,7 @@ function getDisplayDate(week: number, day: number) {
 
 	return new Date(year, month, date)
 }
+
 function changeDisplayedDate(date: Date | null) {
 	if (!date) return
 
@@ -95,12 +96,14 @@ function changeDisplayedDate(date: Date | null) {
 
 	displayedDate.value = new Date(year, month, 1)
 }
+
 function changeMonth(value: number) {
 	displayedDate.value = addMonths(displayedDate.value, value)
 }
+
 function handleSelect(date: Date) {
 	if (!isSameMonth(date, displayedDate.value)) {
-		changeMonth(differenceInMonths(displayedDate.value, date))
+		displayedDate.value = date
 	}
 	selectedDate.value = date
 }
@@ -110,6 +113,7 @@ const selectedDate: Ref<Date | null> = ref(null)
 
 const currentStartDay = computed(() => getMonthStartDay(displayedDate.value))
 const currentDaysInMonth = computed(() => getDaysInMonth(displayedDate.value))
+
 const weeksCount = computed(() => {
 	const averageWeeks = (currentDaysInMonth.value + currentStartDay.value) / 7
 	let weeks = averageWeeks
@@ -121,11 +125,7 @@ const weeksCount = computed(() => {
 
 const formattedSelectedDate = computed(() => {
 	if (!selectedDate.value) return
-
-	let { year, month, monthDay } = getDateParams(selectedDate.value)
-	const displayedMonth = month + 1
-
-	return `${addZero(monthDay)}.${addZero(displayedMonth)}.${year}`
+	return format(selectedDate.value, DATE_FORMAT)
 })
 </script>
 

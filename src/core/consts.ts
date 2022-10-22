@@ -1,3 +1,5 @@
+export const DATE_FORMAT = 'dd.MM.yyyy'
+
 export const monthsNamesMap = new Map<number, string>([
 	[1, 'Январь'],
 	[2, 'Февраль'],

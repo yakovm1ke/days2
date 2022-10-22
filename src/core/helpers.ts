@@ -24,12 +24,3 @@ export const getMonthStartDay = (date: Date): number => {
 	const {year, month} = getDateParams(date)
 	return new Date(year, month, 1).getDay()
 }
-
-/**
- * Добавляет 0 перед числу, если оно меньше 10
- */
-export const addZero = (number: number): string => {
-	if (isNaN(number) || number < 0) return ''
-	if (number < 10) return `0${number}`
-	return String(number)
-}
