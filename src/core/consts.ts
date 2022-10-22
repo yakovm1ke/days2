@@ -1,4 +1,4 @@
-export const monthsMap = new Map<number, string>([
+export const monthsNamesMap = new Map<number, string>([
 	[1, 'Январь'],
 	[2, 'Февраль'],
 	[3, 'Март'],

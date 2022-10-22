@@ -8,7 +8,7 @@
         {{ '<' }}
       </button>
       <div :class="$style.title">
-        {{ monthsMap.get(displayedDate.getMonth() + 1) }}
+        {{ monthsNamesMap.get(displayedDate.getMonth() + 1) }}
         {{ displayedDate.getFullYear() }} года
       </div>
       <button
@@ -73,8 +73,9 @@
 
 <script lang='ts' setup>
 import { computed, ref, type Ref } from 'vue'
-import { monthsMap } from '@/core/consts'
-import { getDaysInMonth, getMonthStartDay, isSameDay, isSameMonth, isWeekend, getDateParams, addMonth, addZero, getDifferenceInMonths } from '@/core/helpers'
+import { monthsNamesMap } from '@/core/consts'
+import { getDaysInMonth, getMonthStartDay, getDateParams, addZero } from '@/core/helpers'
+import { isSameDay, isSameMonth, isWeekend, addMonths, differenceInMonths } from 'date-fns'
 
 function getDisplayDate(week: number, day: number) {
 	// NOTE: day + 1 для смещения первого дня с ВС на ПН
@@ -95,11 +96,11 @@ function changeDisplayedDate(date: Date | null) {
 	displayedDate.value = new Date(year, month, 1)
 }
 function changeMonth(value: number) {
-	displayedDate.value = addMonth(displayedDate.value, value)
+	displayedDate.value = addMonths(displayedDate.value, value)
 }
 function handleSelect(date: Date) {
 	if (!isSameMonth(date, displayedDate.value)) {
-		changeMonth(getDifferenceInMonths(displayedDate.value, date))
+		changeMonth(differenceInMonths(displayedDate.value, date))
 	}
 	selectedDate.value = date
 }
@@ -111,13 +112,10 @@ const currentStartDay = computed(() => getMonthStartDay(displayedDate.value))
 const currentDaysInMonth = computed(() => getDaysInMonth(displayedDate.value))
 const weeksCount = computed(() => {
 	const averageWeeks = (currentDaysInMonth.value + currentStartDay.value) / 7
-
 	let weeks = averageWeeks
-
 	if (averageWeeks % 1) {
 		weeks = Math.ceil(averageWeeks)
 	}
-
 	return currentStartDay.value === 0 ? weeks + 1 : weeks
 })
 
@@ -129,7 +127,6 @@ const formattedSelectedDate = computed(() => {
 
 	return `${addZero(monthDay)}.${addZero(displayedMonth)}.${year}`
 })
-
 </script>
 
 <style module>
